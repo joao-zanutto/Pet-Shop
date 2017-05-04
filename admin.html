@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="adminstyle.css">
+    <title>Página do Administrador</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <!-- MENU -->
+        <nav>
+            <div class="page-header">
+                <h3>Painel do Administador</h3>
+            </div>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a data-toggle="pill" href="#admin">Cadastrar Administrador</a></li>
+                <li><a data-toggle="pill" href="#client">Cadastrar Cliente</a></li>
+                <li><a data-toggle="pill" href="#product">Cadastrar Produto</a></li>
+                <li><a data-toggle="pill" href="#services">Cadastrar Serviço</a></li>
+                <li><a data-toggle="pill" href="#astock">Alterar Estoque</a></li>
+                <li><a data-toggle="pill" href="#calendar">Calendario de Serviços</a></li>
+                <li><a data-toggle="pill" href="#data">Dashboard</a></li>
+            </ul>
+        </nav>
+
+        <!-- CORPO -->
+        <div class="tab-content page-body">
+
+            <!-- CADASTRO ADMIN -->
+            <div id="admin" class="tab-pane in fade active">
+                <div class="new-admin">
+                    <form class="formulario">
+                        <h3>Cadastro de novo administrador</h3>
+                        <div class="form-group">
+                            <label for="ausr">Usuário:</label>
+                            <input type="text" class="form-control" id="ausr">
+                        </div>
+                        <div class="form-group">
+                            <label for="apwd">Senha:</label>
+                            <input type="password" class="form-control" id="apwd">
+                        </div>
+                        <div class="form-group">
+                            <label for="aname">Nome:</label>
+                            <input type="text" class="form-control" id="aname">
+                        </div>
+                        <div class="form-group">
+                            <label for="amail">E-Mail:</label>
+                            <input type="email" class="form-control" id="amail">
+                        </div>
+                        <div class="form-group">
+                            <label for="atel">Telefone:</label>
+                            <input type="text" class="form-control" id="atel">
+                        </div>
+                        <div class="form-group">
+                            <label>Foto:</label>
+                            <input type="file" accept="image/*">
+                        </div>
+                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- CADASTRO CLIENTE -->
+            <div id="client" class="tab-pane fade">
+                <div class="new-client">
+                    <form class="formulario">
+                        <h3>Cadastro de novo cliente</h3>
+                        <div class="form-group">
+                            <label for="cusr">Usuário:</label>
+                            <input type="text" class="form-control" id="cusr">
+                        </div>
+                        <div class="form-group">
+                            <label for="cpwd">Senha:</label>
+                            <input type="password" class="form-control" id="cpwd">
+                        </div>
+                        <div class="form-group">
+                            <label for="cname">Nome:</label>
+                            <input type="text" class="form-control" id="cname">
+                        </div>
+                        <div class="form-group">
+                            <label for="cmail">E-Mail:</label>
+                            <input type="email" class="form-control" id="cmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="ctel">Telefone:</label>
+                            <input type="text" class="form-control" id="ctel">
+                        </div>
+                        <div class="form-group">
+                            <label for="cadr">Endereço:</label>
+                            <input type="text" class="form-control" id="cadr">
+                        </div>
+                        <div class="form-group">
+                            <label>Foto:</label>
+                            <input type="file" accept="image/*">
+                        </div>
+                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- CADASTRO PRODUTO -->
+            <div id="product" class="tab-pane fade">
+                <div class="new-product">
+                    <form class="formulario">
+                        <h3>Cadastro de novo produto</h3>
+                        <div class="form-group">
+                            <label for="pid">ID:</label>
+                            <input type="text" class="form-control" id="pid">
+                        </div>
+                        <div class="form-group">
+                            <label for="pname">Nome do Produto:</label>
+                            <input type="text" class="form-control" id="pname">
+                        </div>
+                        <div class="form-group">
+                            <label for="pprice">Preço:</label>
+                            <input type="text" class="form-control" id="pprice">
+                        </div>
+                        <div class="form-group">
+                            <label for="pstock">Quantidade em estoque:</label>
+                            <input type="text" class="form-control" id="pstock">
+                        </div>
+                        <div class="form-group">
+                            <label>Categoria do produto: </label>
+                            <label class="radio-inline"><input type="radio" name="optradio">Ração</label>
+                            <label class="radio-inline"><input type="radio" name="optradio">Coleira</label>
+                            <label class="radio-inline"><input type="radio" name="optradio">Casinha</label>
+                            <label class="radio-inline"><input type="radio" name="optradio">Outros</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="pdesc">Descrição do produto: </label>
+                            <textarea class="form-control" rows="5" id="pdesc"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Foto:</label>
+                            <input type="file" accept="image/*">
+                        </div>
+                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- CADASTRO SERVIÇOS -->
+            <div id="services" class="tab-pane fade">
+                <div class="new-service">
+                    <form class="formulario">
+                        <h3>Cadastro de novo serviço</h3>
+                        <div class="form-group">
+                            <label for="sid">ID:</label>
+                            <input type="text" class="form-control" id="sid">
+                        </div>
+                        <div class="form-group">
+                            <label for="sname">Nome do Serviço:</label>
+                            <input type="text" class="form-control" id="sname">
+                        </div>
+                        <div class="form-group">
+                            <label for="sprice">Preço:</label>
+                            <input type="text" class="form-control" id="sprice">
+                        </div>
+                        <div class="form-group">
+                            <label for="sdesc">Descrição do serviço: </label>
+                            <textarea class="form-control" rows="5" id="sdesc"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Foto:</label>
+                            <input type="file" accept="image/*">
+                        </div>
+                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- GERENCIAR ESTOQUE -->
+            <div id="astock" class="tab-pane fade">
+                <h3>Tabela de estoque</h3>
+                <table class="table">
+                    <thead>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Preço(R$)</th>
+                        <th>Categoria</th>
+                        <th>Em estoque</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1235</td>
+                            <td>Coleira Cachorro</td>
+                            <td>39,90</td>
+                            <td>Coleira</td>
+                            <td>23</td>
+                            <td>
+                                <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></button>
+                                <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-minus"></span></button>
+                                <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6127</td>
+                            <td>Casinha Cachorro</td>
+                            <td>309,90</td>
+                            <td>Casinha</td>
+                            <td>8</td>
+                            <td>
+                                <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></button>
+                                <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-minus"></span></button>
+                                <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- CALENDARIO DE SERVIÇOS -->
+            <div id="calendar" class="tab-pane fade">  
+                <label>Escolha a semana:</label>
+                <select class="form-control">
+                    <option>17/04 - 21/04</option>
+                    <option>24/04 - 28/04</option>
+                    <option>01/05 - 05/05</option>
+                </select>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Hora/Data</th>
+                        <th>Segunda-Feira</th>
+                        <th>Terça-Feira</th>
+                        <th>Quarta-Feira</th>
+                        <th>Quinta-Feira</th>
+                        <th>Sexta-Feira</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10:00</td>
+                            <td>Livre</td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                        </tr>
+                        <tr>
+                            <td>10:30</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Livre</td>
+                        </tr>
+                        <tr>
+                            <td>11:00</td>
+                            <td>Livre</td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                        </tr>
+                        <tr>
+                            <td>11:30</td>
+                            <td>Livre</td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                        </tr>
+                        <tr>
+                            <td>12:00</td>
+                            <td>Livre</td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                        </tr>
+                        <tr>
+                            <td>12:30</td>
+                            <td>Livre</td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                        </tr>
+                        <tr>
+                            <td>13:00</td>
+                            <td>Livre</td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                        </tr>
+                        <tr>
+                            <td>13:30</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Livre</td>
+                        </tr>
+                        <tr>
+                            <td>14:00</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Livre</td>
+                        </tr>
+                        <tr>
+                            <td>14:30</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Livre</td>
+                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
+                            <td>Livre</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- DASHBOARD -->
+            <div id="data" class="tab-pane fade">
+                <h3>Histórico de Vendas</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Data</th>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Cliente</th>
+                        <th>Categoria</th>
+                        <th>Quantidade</th>
+                        <th>Valor(R$)</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>23/03/2017</td>
+                            <td>1-1235</td>
+                            <td>Coleira Cachorro</td>
+                            <td>nissim569</td>
+                            <td>Coleira</td>
+                            <td>2</td>
+                            <td>79,80</td>
+                        </tr>
+                        <tr>
+                            <td>10/04/2017</td>
+                            <td>2-4672</td>
+                            <td>Banho + Tosa</td>
+                            <td>jonatascm</td>
+                            <td></td>
+                            <td>1</td>
+                            <td>49,80</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4>Valor Total: 129,60</h4>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

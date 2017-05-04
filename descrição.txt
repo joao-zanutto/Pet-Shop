@@ -1,0 +1,30 @@
+Grupo:
+	-João Pedro Berno Zanutto	NºUSP: 8956672
+
+
+Arquivos:
+	Página Inicial:
+	-index.html	  Página inicial do projeto
+	-main.css	  Estilização da página index.html
+	-logo.png	  O logo da "Pet Shop do Fuguinha"
+	-pata.png	  Imagem de uma pata para estilização do index
+
+	Página de Administrador:
+	-admin.html	  Página contendo o painel do administrador
+	-adminstyle.css	  Estilização da página admin.html
+
+	Página do Cliente:
+	-client.html	  Página do cliente com suas interações
+	-clientstyle.css  Estilização da página client.html
+	-racaox.jpg	  Imagens para a loja da petshop
+
+
+Observações:
+
+	-Não foram adicionadas informações tais como cliente com horario reservado,
+	animal e etc aos calendários de serviços pois tomaria muito tempo e depois
+	teria de ser apagado
+
+	-Na aba "Dashboard" do painel do administrador será adicionado um gráfico
+	interativo, que não foi ainda pela má aparencia que causaria um gráfico
+	em jpg para demonstração de como seria o funcional
