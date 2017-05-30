@@ -1,5 +1,9 @@
-<!DOCTYPE html>
+<!--
+    Nome: João Pedro Berno Zanutto
+    nºUSP: 8956672
+-->
 
+<!DOCTYPE html>
 <html lang="pt">
 
 <head>
@@ -13,6 +17,7 @@
 </head>
 
 <body>
+    <script type="text/javascript" src="admin.js"></script>
     <div class="container-fluid">
 
         <!-- MENU -->
@@ -63,7 +68,39 @@
                             <label>Foto:</label>
                             <input type="file" accept="image/*">
                         </div>
-                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                        <button id="addAdmin" class="btn btn-default"><a href="#">Cadastrar</a></button>
+                        <button id="admTable" class="btn btn-default" data-toggle="modal" data-target="#myModal1"><a href="#">Abrir tabela de administradores</a></button>
+                        
+                        <div id="myModal1" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 style="float: left;"class="modal-title">Administradores</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table" id="admins">
+                                            <thead>
+                                                <th>Usuário</th>
+                                                <th>Nome</th>
+                                                <th>E-mail</th>
+                                                <th>Telefone</th>
+                                                <th></th>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                        <label>Nome da pessoa a ser deletada: </label>
+                                        <input type="text" class="deletePerson1">
+                                        <button type="button" class="btn btn-danger" class="deletePersonButton1">Deletar</button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        
                     </form>
                 </div>
             </div>
@@ -101,7 +138,38 @@
                             <label>Foto:</label>
                             <input type="file" accept="image/*">
                         </div>
-                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                        <button id="addClient" class="btn btn-default"><a href="#">Cadastrar</a></button>
+                        <button id="clientTable" class="btn btn-default" data-toggle="modal" data-target="#myModal2"><a href="#">Abrir tabela de clientes</a></button>
+                        
+                        <div id="myModal2" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 style="float: left;"class="modal-title">Clientes</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table" id="clients">
+                                            <thead>
+                                                <th>Usuário</th>
+                                                <th>Nome</th>
+                                                <th>E-mail</th>
+                                                <th>Telefone</th>
+                                                <th>Endereço</th>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                        <label>Nome da pessoa a ser deletada: </label>
+                                        <input type="text" id="deletePerson2">
+                                        <button type="button" class="btn btn-danger" id="deletePersonButton2">Deletar</button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -219,7 +287,7 @@
             </div>
 
             <!-- CALENDARIO DE SERVIÇOS -->
-            <div id="calendar" class="tab-pane fade">  
+            <div id="calendar" class="tab-pane fade">
                 <label>Escolha a semana:</label>
                 <select class="form-control">
                     <option>17/04 - 21/04</option>
@@ -355,7 +423,7 @@
                         </tr>
                     </tbody>
                 </table>
-                
+
                 <h4>Valor Total: 129,60</h4>
             </div>
         </div>

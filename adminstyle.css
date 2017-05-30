@@ -1,6 +1,21 @@
+/*
+    Nome: João Pedro Berno Zanutto
+    nºUSP: 8956672
+*/
+
 html, body{
     height: 100%;
     width: 100%;
+}
+
+button a{
+    color: black;
+    text-decoration: none;
+}
+
+button a:hover {
+    color: black;
+    text-decoration: none;
 }
 
 .container-fluid{
