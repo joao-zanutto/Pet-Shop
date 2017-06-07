@@ -5,6 +5,8 @@
 /*globals $:false */
 
 $("document").ready(function(){
+    var user = window.location.href.split('/').pop();
+    
     var request = window.indexedDB.open("DBSystem2");
     var db;
     
@@ -19,6 +21,7 @@ $("document").ready(function(){
         
         // Cria a tabela pessoas
         let people = db.createObjectStore("people", {keyPath: "usr"});
+        people.createIndex("name", "name", {unique: false});
         people.createIndex("mail", "mail", {unique : true});
         people.createIndex("tel", "tel", {unique: true});
         
@@ -29,6 +32,10 @@ $("document").ready(function(){
         // Cria a tabela serviços
         let service = db.createObjectStore("service", {keyPath: "sid"});
         service.createIndex("sname", "sname", {unique: true});
+        
+        var person = {usr: "admin", pwd: "admin", name: "admin", email: "admin", tel: "admin", address: "admin", type: "adm"};
+        var ObStore = db.transaction("people", "readwrite").objectStore("people");
+        let personAdd = ObStore.add(person);
     };
     
     // Inicializa o banco
@@ -95,8 +102,8 @@ $("document").ready(function(){
             if(cursor && cursor.value.type == 'client'){
                 $("#clients tbody").after("<tr><td>" + cursor.key + "</td><td>" + cursor.value.name + "</td><td>" + cursor.value.mail +
                                        "</td><td>" + cursor.value.tel + "</td><td>" + cursor.value.address + "</td></tr>");
-                cursor.continue();
             }
+            cursor.continue();
         };
     }
     
@@ -275,7 +282,6 @@ $("document").ready(function(){
             addToTable(service, "service");
         }
     });
-    
     
     // Função que adiciona um objeto a sua tabela
     function addToTable(object, table){
