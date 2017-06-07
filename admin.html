@@ -1,6 +1,10 @@
 <!--
     Nome: João Pedro Berno Zanutto
     nºUSP: 8956672
+
+    OBS: O uso dos buttons sem o <a> estava acarretando em reloads na página a cada click no botão,
+    que foi concertado usando o <a> com href="#", por isso no primeiro click de qualquer botão está retornando ao
+    "homepage"
 -->
 
 <!DOCTYPE html>
@@ -30,7 +34,7 @@
                 <li><a data-toggle="pill" href="#client">Cadastrar Cliente</a></li>
                 <li><a data-toggle="pill" href="#product">Cadastrar Produto</a></li>
                 <li><a data-toggle="pill" href="#services">Cadastrar Serviço</a></li>
-                <li><a data-toggle="pill" href="#astock">Alterar Estoque</a></li>
+                <li><a data-toggle="pill" href="#astock" id="stockButton">Alterar Estoque</a></li>
                 <li><a data-toggle="pill" href="#calendar">Calendario de Serviços</a></li>
                 <li><a data-toggle="pill" href="#data">Dashboard</a></li>
             </ul>
@@ -70,12 +74,12 @@
                         </div>
                         <button id="addAdmin" class="btn btn-default"><a href="#">Cadastrar</a></button>
                         <button id="admTable" class="btn btn-default" data-toggle="modal" data-target="#myModal1"><a href="#">Abrir tabela de administradores</a></button>
-                        
+
                         <div id="myModal1" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 style="float: left;"class="modal-title">Administradores</h4>
+                                        <h4 style="float: left;" class="modal-title">Administradores</h4>
                                     </div>
                                     <div class="modal-body">
                                         <table class="table" id="admins">
@@ -90,8 +94,8 @@
                                             </tbody>
                                         </table>
                                         <label>Nome da pessoa a ser deletada: </label>
-                                        <input type="text" class="deletePerson1">
-                                        <button type="button" class="btn btn-danger" class="deletePersonButton1">Deletar</button>
+                                        <input type="text" id="deletePerson1">
+                                        <button type="button" class="btn btn-danger" id="deletePersonButton1">Deletar</button>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -100,7 +104,7 @@
 
                             </div>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
@@ -140,12 +144,12 @@
                         </div>
                         <button id="addClient" class="btn btn-default"><a href="#">Cadastrar</a></button>
                         <button id="clientTable" class="btn btn-default" data-toggle="modal" data-target="#myModal2"><a href="#">Abrir tabela de clientes</a></button>
-                        
+
                         <div id="myModal2" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 style="float: left;"class="modal-title">Clientes</h4>
+                                        <h4 style="float: left;" class="modal-title">Clientes</h4>
                                     </div>
                                     <div class="modal-body">
                                         <table class="table" id="clients">
@@ -195,12 +199,12 @@
                             <label for="pstock">Quantidade em estoque:</label>
                             <input type="text" class="form-control" id="pstock">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="ptype">
                             <label>Categoria do produto: </label>
-                            <label class="radio-inline"><input type="radio" name="optradio">Ração</label>
-                            <label class="radio-inline"><input type="radio" name="optradio">Coleira</label>
-                            <label class="radio-inline"><input type="radio" name="optradio">Casinha</label>
-                            <label class="radio-inline"><input type="radio" name="optradio">Outros</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="Racao">Ração</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="Coleira">Coleira</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="Casinha">Casinha</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" value="Outros">Outros</label>
                         </div>
                         <div class="form-group">
                             <label for="pdesc">Descrição do produto: </label>
@@ -210,7 +214,7 @@
                             <label>Foto:</label>
                             <input type="file" accept="image/*">
                         </div>
-                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                        <button id="addProduto" class="btn btn-default"><a href="#">Cadastrar</a></button>
                     </form>
                 </div>
             </div>
@@ -240,7 +244,7 @@
                             <label>Foto:</label>
                             <input type="file" accept="image/*">
                         </div>
-                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                        <button id="serviceAdd" class="btn btn-default"><a href="#">Cadastrar</a></button>
                     </form>
                 </div>
             </div>
@@ -248,7 +252,7 @@
             <!-- GERENCIAR ESTOQUE -->
             <div id="astock" class="tab-pane fade">
                 <h3>Tabela de estoque</h3>
-                <table class="table">
+                <table class="table" id="stock">
                     <thead>
                         <th>ID</th>
                         <th>Nome</th>
@@ -258,32 +262,15 @@
                         <th></th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1235</td>
-                            <td>Coleira Cachorro</td>
-                            <td>39,90</td>
-                            <td>Coleira</td>
-                            <td>23</td>
-                            <td>
-                                <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></button>
-                                <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-minus"></span></button>
-                                <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6127</td>
-                            <td>Casinha Cachorro</td>
-                            <td>309,90</td>
-                            <td>Casinha</td>
-                            <td>8</td>
-                            <td>
-                                <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></button>
-                                <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-minus"></span></button>
-                                <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
+                <div class="form-group">
+                    <label for="stockList">Escolha um produto para editar:</label>
+                    <select class="form-control" id="stockList" style="display: inline;"></select>
+                    <button type="button" class="btn btn-info" id="padd"><span class="glyphicon glyphicon-plus"></span></button>
+                    <button type="button" class="btn btn-warning" id="pminus"><span class="glyphicon glyphicon-minus"></span></button>
+                    <button type="button" class="btn btn-danger" id="premove"><span class="glyphicon glyphicon-remove"></span></button>
+                </div>
             </div>
 
             <!-- CALENDARIO DE SERVIÇOS -->
