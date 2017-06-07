@@ -23,7 +23,7 @@ $('document').ready(function(){
         people.createIndex("mail", "mail", {unique : true});
         people.createIndex("tel", "tel", {unique: true});
         
-        // Cria a tabela pessoas
+        // Cria a tabela produtos
         let produto = db.createObjectStore("produto", {keyPath: "pid"});
         produto.createIndex("pname", "pname", {unique: false});
         
@@ -31,6 +31,7 @@ $('document').ready(function(){
         let service = db.createObjectStore("service", {keyPath: "sid"});
         service.createIndex("sname", "sname", {unique: true});
         
+        // Adiciona o admin
         var person = {usr: "admin", pwd: "admin", name: "admin", email: "admin", tel: "admin", address: "admin", type: "adm"};
         var ObStore = db.transaction("people", "readwrite").objectStore("people");
         let personAdd = ObStore.add(person);

@@ -25,7 +25,7 @@ $("document").ready(function(){
         people.createIndex("mail", "mail", {unique : true});
         people.createIndex("tel", "tel", {unique: true});
         
-        // Cria a tabela pessoas
+        // Cria a tabela produtos
         let produto = db.createObjectStore("produto", {keyPath: "pid"});
         produto.createIndex("pname", "pname", {unique: false});
         
@@ -145,6 +145,7 @@ $("document").ready(function(){
     //  pstock
     //  ptype
     //  pdescription
+    //  imgURL
     
     // EventHandler do cadastro de produto
     $("#addProduto").click(function(){
@@ -153,7 +154,8 @@ $("document").ready(function(){
                        pprice: parseFloat($("#pprice").val()),
                        pstock: parseInt($("#pstock").val()),
                        ptype: $('input[name=optradio]:checked', '#ptype').val(),
-                       pdescription: $("#pdescription").val()};
+                       pdescription: $("#pdesc").val(),
+                       imgURL: $("#imgURL").val()};
                 
         if(produto.ptype === undefined){
             alert("O tipo de produto não pode estar vazio");
