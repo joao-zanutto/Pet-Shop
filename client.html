@@ -1,6 +1,9 @@
 <!--
     Nome: João Pedro Berno Zanutto
     nºUSP: 8956672
+
+    OBS: A implementação da compra por meio de um botão não pode ser feito com jQuery usando um selector de class
+        como handler de vários botões
 -->
 
 <!DOCTYPE html>
@@ -283,6 +286,38 @@
             <div id="buy" class="tab-pane fade">
                 <h3>Loja de Produtos</h3>
                 <div id="productContents">
+                </div>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#carrinho" id="buyBtn">Comprar!</button>
+            </div>
+
+            <div id="carrinho" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 style="float: left;" class="modal-title">Carrinho de Compras</h4>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table" id="carrinhoProducts">
+                                <thead>
+                                    <th>Produto</th>
+                                    <th>Quantidade</th>
+                                    <th>Preço Unitario</th>
+                                    <th>Preço Total</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <label>Total: </label>
+                            <div id="allTotal"></div>
+                            <label>Número do cartão: </label>
+                            <input type="text" id="cCard">
+                            <button type="button" class="btn btn-primary" id="cCard">Finalizar</button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
