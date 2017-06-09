@@ -31,15 +31,31 @@ $('document').ready(function(){
         let service = db.createObjectStore("service", {keyPath: "sid"});
         service.createIndex("sname", "sname", {unique: true});
         
-        // Adiciona o admin
-        var person = {usr: "admin", pwd: "admin", name: "admin", email: "admin", tel: "admin", address: "admin", type: "adm"};
-        var ObStore = db.transaction("people", "readwrite").objectStore("people");
-        let personAdd = ObStore.add(person);
+        // Cria a tabela animais
+        let animal = db.createObjectStore("animal", {autoIncrement: true});
+        service.createIndex("petname", "petname", {unique: false});
+        
+        // Cria a tabela log
+        let log = db.createObjectStore("log", {autoIncrement: true});
+        // log ={typeofoperation, product or service name, quantity, value}
+        
+        // Cria a tabela semana
+        let semana = db.createObjectStore("semana", {autoIncrement: true});
+        // semana = {key, weekname}
+        
+        // Cria a tabela calendar
+        let calendar = db.createObjectStore("calendar", {autoIncrement: true});
+        calendar.createIndex("slot", "slot", {unique: false});
+        // calendar = {slot, week, service, client, animal}
     };
     
     // Mensagem de sucesso, retorna o banco para o objeto db
     request.onsuccess = function(event) {
         db = request.result;
+        // Adiciona o admin
+        var person = {usr: "admin", pwd: "admin", name: "admin", email: "admin", tel: "admin", address: "admin", type: "adm"};
+        var ObStore = db.transaction("people", "readwrite").objectStore("people");
+        let personAdd = ObStore.add(person);
     };
     
     // EventHandler do botão de login

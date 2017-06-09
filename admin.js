@@ -15,29 +15,6 @@ $("document").ready(function(){
         alert(request.errorCode);
     };
     
-    // upgrade needed do banco, cria as tabelas e altera caso necessário
-    request.onupgradeneeded = function(event){
-        db = request.result;
-        
-        // Cria a tabela pessoas
-        let people = db.createObjectStore("people", {keyPath: "usr"});
-        people.createIndex("name", "name", {unique: false});
-        people.createIndex("mail", "mail", {unique : true});
-        people.createIndex("tel", "tel", {unique: true});
-        
-        // Cria a tabela produtos
-        let produto = db.createObjectStore("produto", {keyPath: "pid"});
-        produto.createIndex("pname", "pname", {unique: false});
-        
-        // Cria a tabela serviços
-        let service = db.createObjectStore("service", {keyPath: "sid"});
-        service.createIndex("sname", "sname", {unique: true});
-        
-        var person = {usr: "admin", pwd: "admin", name: "admin", email: "admin", tel: "admin", address: "admin", type: "adm"};
-        var ObStore = db.transaction("people", "readwrite").objectStore("people");
-        let personAdd = ObStore.add(person);
-    };
-    
     // Inicializa o banco
     request.onsuccess = function(event) {
         db = request.result;
@@ -300,4 +277,22 @@ $("document").ready(function(){
             alert("Cadastro realizado com sucesso!");
         };
     }
+    
+    // EventHandler do botão da dashboard que atualiza a tabela sempre que a tag for selecionada
+    $("#dashboard").click(function(){
+        $("#log .line").remove();        
+        var stock = db.transaction("log").objectStore("log");
+        stock.openCursor().onsuccess = event => {
+            var cursor = event.target.result;
+            if(cursor){
+                $("#log").append("<tr class='line'><td>" +
+                                 cursor.value.type + "</td><td>"+
+                                 cursor.value.client + "</td><td>"+
+                                 cursor.value.name + "</td><td>" +
+                                 cursor.value.quantity + "</td><td>" +
+                                 cursor.value.price + "</td></tr>");
+                cursor.continue();
+            }
+        };
+    });
 });

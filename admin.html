@@ -36,7 +36,7 @@
                 <li><a data-toggle="pill" href="#services">Cadastrar Serviço</a></li>
                 <li><a data-toggle="pill" href="#astock" id="stockButton">Alterar Estoque</a></li>
                 <li><a data-toggle="pill" href="#calendar">Calendario de Serviços</a></li>
-                <li><a data-toggle="pill" href="#data">Dashboard</a></li>
+                <li><a data-toggle="pill" href="#data" id="dashboard">Dashboard</a></li>
             </ul>
         </nav>
 
@@ -366,40 +366,18 @@
 
             <!-- DASHBOARD -->
             <div id="data" class="tab-pane fade">
-                <h3>Histórico de Vendas</h3>
-                <table class="table table-bordered">
+                <h3>Dashboard</h3>
+                <table class="table table-bordered" id="log">
                     <thead>
-                        <th>Data</th>
-                        <th>ID</th>
-                        <th>Nome</th>
+                        <th>Tipo de Operação</th>
                         <th>Cliente</th>
-                        <th>Categoria</th>
+                        <th>Produto/Serviço</th>
                         <th>Quantidade</th>
-                        <th>Valor(R$)</th>
+                        <th>Valor Total</th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>23/03/2017</td>
-                            <td>1-1235</td>
-                            <td>Coleira Cachorro</td>
-                            <td>nissim569</td>
-                            <td>Coleira</td>
-                            <td>2</td>
-                            <td>79,80</td>
-                        </tr>
-                        <tr>
-                            <td>10/04/2017</td>
-                            <td>2-4672</td>
-                            <td>Banho + Tosa</td>
-                            <td>jonatascm</td>
-                            <td></td>
-                            <td>1</td>
-                            <td>49,80</td>
-                        </tr>
                     </tbody>
                 </table>
-
-                <h4>Valor Total: 129,60</h4>
             </div>
         </div>
 

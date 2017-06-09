@@ -26,7 +26,7 @@
         <nav>
             <img src="logo.png" height="100" \>
             <ul class="nav nav-tabs">
-                <li class="active "><a data-toggle="tab" href="#home" class="glyphicon glyphicon-home"><label> HOME</label></a></li>
+                <li class="active "><a data-toggle="tab" href="#home" class="glyphicon glyphicon-home" id="hButton"><label> HOME</label></a></li>
                 <li><a data-toggle="tab" href="#register" class="glyphicon glyphicon-pencil"><label> CADASTRAR ANIMAL</label></a></li>
                 <li><a data-toggle="tab" href="#book" class="glyphicon glyphicon-time"><label> AGENDAR SERVIÇO</label></a></li>
                 <li><a data-toggle="tab" href="#buy" class="glyphicon glyphicon-usd" id="lojaButton"><label> LOJA DE PRODUTOS</label></a></li>
@@ -40,48 +40,15 @@
             <div id="home" class="tab-pane fade in active">
                 <h2>Suas Informações</h3>
                     <h3>Seus Animais</h3>
-                    <table class="table">
+                    <table class="table" id="animals">
                         <thead>
                             <th>Nome do Animal</th>
                             <th>Idade</th>
                             <th>Tipo</th>
-                            <th>Raça
-                                <th>
-                                    <th>Sexo</th>
+                            <th>Raça</th>
+                            <th>Sexo</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Pedrita</td>
-                                <td>15 anos</td>
-                                <td>Cão</td>
-                                <td>Labrador</td>
-                                <td>Femea
-                                    <td>
-                            </tr>
-                            <tr>
-                                <td>Woody</td>
-                                <td>17 anos</td>
-                                <td>Cão</td>
-                                <td>Poodle Toy</td>
-                                <td>Macho
-                                    <td>
-                            </tr>
-                            <tr>
-                                <td>Nelson</td>
-                                <td>9 meses</td>
-                                <td>Hamster</td>
-                                <td>Sírio</td>
-                                <td>Macho
-                                    <td>
-                            </tr>
-                            <tr>
-                                <td>Cuba</td>
-                                <td>7 anos</td>
-                                <td>Cão</td>
-                                <td>Vira-lata</td>
-                                <td>Femea
-                                    <td>
-                            </tr>
                         </tbody>
                     </table>
                     <h3>Serviços Agendados</h3>
@@ -90,9 +57,8 @@
                             <th>Nome do Serviço</th>
                             <th>Data</th>
                             <th>Hora</th>
-                            <th>Animal
-                                <th>
-                                    <th>Preço (R$)</th>
+                            <th>Animal</th>
+                            <th>Preço (R$)</th>
                         </thead>
                         <tbody>
                             <tr>
@@ -126,16 +92,16 @@
                         </div>
                         <div class="form-group">
                             <label for="petage">Idade</label>
-                            <input type="text" class="form-control" id="petage">
+                            <input type="number" class="form-control" id="petage">
                         </div>
                         <div class="form-group">
                             <label for="petrace">Tipo:</label>
                             <select class="form-control" id="petrace">
-                                <option>Cães</option>
-                                <option>Gatos</option>
-                                <option>Roedores</option>
-                                <option>Aves</option>
-                                <option>Répteis</option>
+                                <option value="Cachorro">Cães</option>
+                                <option value="Gato">Gatos</option>
+                                <option value="Roedor">Roedores</option>
+                                <option value="Ave">Aves</option>
+                                <option value="Réptil">Répteis</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -144,9 +110,12 @@
                         </div>
                         <div class="form-group">
                             <label for="petsex">Sexo:</label>
-                            <input type="text" class="form-control" id="petsex">
+                            <select class="form-control" id="petsex">
+                                <option value="Macho">Macho</option>
+                                <option value="Fêmea">Fêmea</option>
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                        <div class="btn btn-default" id="addAnimal">Cadastrar</div>
                     </form>
                 </div>
             </div>
@@ -311,7 +280,7 @@
                             <div id="allTotal"></div>
                             <label>Número do cartão: </label>
                             <input type="text" id="cCard">
-                            <button type="button" class="btn btn-primary" id="cCard">Finalizar</button>
+                            <button type="button" class="btn btn-primary" id="finishButton" data-dismiss="modal">Finalizar</button>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
