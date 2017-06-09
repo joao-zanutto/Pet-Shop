@@ -3,12 +3,13 @@
     nºUSP: 8956672
 */
 
-html, body{
+html,
+body {
     height: 100%;
     width: 100%;
 }
 
-button a{
+button a {
     color: black;
     text-decoration: none;
 }
@@ -18,50 +19,50 @@ button a:hover {
     text-decoration: none;
 }
 
-.container-fluid{
+.container-fluid {
     padding: 0;
     height: 100%;
     width: 100%;
 }
 
-nav{
-    height:100%;
+nav {
+    height: 100%;
     background-color: gainsboro;
     display: inline-block;
     float: left;
 }
 
-nav h3{
+nav h3 {
     margin: 20px;
 }
 
-.nav{
+.nav {
     margin-left: 10px;
 }
 
-.page-body{
+.page-body {
     display: inline-flex;
     width: calc(100% - 286.81px);
     padding-left: 50px;
     padding-right: 20px;
 }
 
-.tab-pane{
+.tab-pane {
     width: 100%;
 }
 
-.form-control{
+.form-control {
     width: 200px;
 }
 
-table{
+table {
     margin-top: 10px;
 }
 
-h4{
+h4 {
     text-align: right;
 }
 
-.remove-calendar{
+.remove-calendar {
     float: right;
 }

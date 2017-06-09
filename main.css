@@ -3,59 +3,59 @@
     nºUSP: 8956672
 */
 
-body{
+body {
     background-color: cadetblue;
 }
 
-.content-header{
-    height:130px;
+.content-header {
+    height: 130px;
     margin-top: 40px;
 }
 
-#logo{
+#logo {
     margin: 10px;
 }
 
-#center{
+#center {
     background-image: url("http://tudosobrecachorros.com.br/wp-content/uploads/2010/10/golden-retriever-puppies-1-1024x727.jpg");
     height: auto !important;
     border-bottom: 1px black solid;
     border-top: 1px black solid;
 }
 
-h2{
+h2 {
     font-size: 35px;
     font-weight: bold;
     margin-bottom: 30px;
     text-align: center;
 }
 
-.content{
+.content {
     margin: 20px;
 }
 
-.formulario{
+.formulario {
     margin-top: 10px !important;
     margin-bottom: 80px;
 }
 
-.formulario p{
+.formulario p {
     margin-left: 1px !important;
 }
 
-#center p{
+#center p {
     margin: 20px;
 }
 
-.address{
+.address {
     margin: 10px !important;
 }
 
-.address p{
+.address p {
     margin: 5px !important;
     color: azure;
 }
 
-.contact{
+.contact {
     float: right;
 }

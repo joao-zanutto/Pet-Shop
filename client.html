@@ -4,6 +4,8 @@
 
     OBS: A implementação da compra por meio de um botão não pode ser feito com jQuery usando um selector de class
         como handler de vários botões
+
+    OBS: O produto não aparecerá na loja caso sua quantidade em estoque seja <= 0
 -->
 
 <!DOCTYPE html>
@@ -28,7 +30,7 @@
             <ul class="nav nav-tabs">
                 <li class="active "><a data-toggle="tab" href="#home" class="glyphicon glyphicon-home" id="hButton"><label> HOME</label></a></li>
                 <li><a data-toggle="tab" href="#register" class="glyphicon glyphicon-pencil"><label> CADASTRAR ANIMAL</label></a></li>
-                <li><a data-toggle="tab" href="#book" class="glyphicon glyphicon-time"><label> AGENDAR SERVIÇO</label></a></li>
+                <li><a data-toggle="tab" href="#book" class="glyphicon glyphicon-time" id="srvButton"><label> AGENDAR SERVIÇO</label></a></li>
                 <li><a data-toggle="tab" href="#buy" class="glyphicon glyphicon-usd" id="lojaButton"><label> LOJA DE PRODUTOS</label></a></li>
             </ul>
         </nav>
@@ -125,21 +127,13 @@
                 <h3>Agendamento de Serviço</h3>
                 <div class="form-group">
                     <label>Escolha o animal:</label>
-                    <select class="form-control">
-                        <option>Pedrita</option>
-                        <option>Woody</option>
-                        <option>Nelson</option>
-                        <option>Cuba</option>
+                    <select class="form-control" id="animalSelector">
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Escolha o serviço</label>
-                    <select class="form-control">
-                        <option>Banho (R$ 30,00)</option>
-                        <option>Banho + Tosa (R$35,00)</option>
-                        <option>Higienização (R$40,00)</option>
-                        <option>Castração (R$300,00)</option>
+                    <select class="form-control" id="serviceSelector">
                     </select>
                 </div>
 
@@ -150,10 +144,7 @@
 
                 <div class="form-group">
                     <label>Escolha a semana:</label>
-                    <select class="form-control">
-                        <option>17/04 - 21/04</option>
-                        <option>24/04 - 28/04</option>
-                        <option>01/05 - 05/05</option>
+                    <select class="form-control" id="weekSelector">
                     </select>
                 </div>
 
@@ -166,91 +157,41 @@
                         <th>Quinta-Feira</th>
                         <th>Sexta-Feira</th>
                     </thead>
-                    <tbody>
-                        <tr>
+                    <tbody id="calendarTable">
+                        <tr id="line0">
                             <td>10:00</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok" \></td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
                         </tr>
-                        <tr>
+                        <tr id="line1">
                             <td>10:30</td>
-                            <td>Ocupado</td>
-                            <td>Ocupado</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
                         </tr>
-                        <tr>
+                        <tr id="line2">
                             <td>11:00</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
-                            <td>Ocupado</td>
-                            <td>Ocupado</td>
                         </tr>
-                        <tr>
+                        <tr id="line3">
                             <td>11:30</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
                         </tr>
-                        <tr>
+                        <tr id="line4">
                             <td>12:00</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
                         </tr>
-                        <tr>
+                        <tr id="line5">
                             <td>12:30</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
                         </tr>
-                        <tr>
+                        <tr id="line6">
                             <td>13:00</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
                         </tr>
-                        <tr>
+                        <tr id="line7">
                             <td>13:30</td>
-                            <td>Ocupado</td>
-                            <td>Ocupado</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
                         </tr>
-                        <tr>
+                        <tr id="line8">
                             <td>14:00</td>
-                            <td>Ocupado</td>
-                            <td>Ocupado</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
                         </tr>
-                        <tr>
+                        <tr id="line9">
                             <td>14:30</td>
-                            <td>Ocupado</td>
-                            <td>Ocupado</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
-                            <td>Ocupado</td>
-                            <td>Livre<button type="button" class="btn btn-primary glyphicon glyphicon-ok"\></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            
+
             <!-- LOJA DE PRODUTOS -->
             <div id="buy" class="tab-pane fade">
                 <h3>Loja de Produtos</h3>

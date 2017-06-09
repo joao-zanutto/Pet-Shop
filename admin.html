@@ -5,6 +5,10 @@
     OBS: O uso dos buttons sem o <a> estava acarretando em reloads na página a cada click no botão,
     que foi concertado usando o <a> com href="#", por isso no primeiro click de qualquer botão está retornando ao
     "homepage"
+
+    OBS2: A descrição do serviço foi retirada do sistema pois nunca seria descrita para o cliente na implementação atual
+
+    OBS3: As fotos foram retiradas dos formulários pois para guardar fotos no IndexedDB é necessário gambiarra
 -->
 
 <!DOCTYPE html>
@@ -35,7 +39,7 @@
                 <li><a data-toggle="pill" href="#product">Cadastrar Produto</a></li>
                 <li><a data-toggle="pill" href="#services">Cadastrar Serviço</a></li>
                 <li><a data-toggle="pill" href="#astock" id="stockButton">Alterar Estoque</a></li>
-                <li><a data-toggle="pill" href="#calendar">Calendario de Serviços</a></li>
+                <li><a data-toggle="pill" href="#calendar" id="calendarButton">Calendario de Serviços</a></li>
                 <li><a data-toggle="pill" href="#data" id="dashboard">Dashboard</a></li>
             </ul>
         </nav>
@@ -202,7 +206,7 @@
                             <label for="pdesc">Descrição do produto: </label>
                             <textarea class="form-control" rows="5" id="pdesc"></textarea>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label for="imgURL">URL da imagem do produto:</label>
                             <input type="text" class="form-control" id="imgURL">
                         </div>
@@ -227,10 +231,6 @@
                         <div class="form-group">
                             <label for="sprice">Preço:</label>
                             <input type="text" class="form-control" id="sprice">
-                        </div>
-                        <div class="form-group">
-                            <label for="sdesc">Descrição do serviço: </label>
-                            <textarea class="form-control" rows="5" id="sdesc"></textarea>
                         </div>
                         <button id="serviceAdd" class="btn btn-default"><a href="#">Cadastrar</a></button>
                     </form>
@@ -263,12 +263,16 @@
 
             <!-- CALENDARIO DE SERVIÇOS -->
             <div id="calendar" class="tab-pane fade">
-                <label>Escolha a semana:</label>
-                <select class="form-control">
-                    <option>17/04 - 21/04</option>
-                    <option>24/04 - 28/04</option>
-                    <option>01/05 - 05/05</option>
-                </select>
+                <div id="week" style="display: inline-block; margin-top: 10px;">
+                    <label>Escolha a semana:</label>
+                    <select class="form-control" style="display: inline-block" id="weekList">
+                    </select>
+                </div>
+                <div id="createweek" style="display: inline-block">
+                    <label>Criar uma semana:</label>
+                    <input type="text" id="newWeek" class="form-control" style="display: inline-block">
+                    <div class="btn btn-default" style="display: inline-block" id="addWeek">Criar</div>
+                </div>
 
                 <table class="table table-bordered">
                     <thead>

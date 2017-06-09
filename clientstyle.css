@@ -3,42 +3,43 @@
     nºUSP: 8956672
 */
 
-body, html{
+body,
+html {
     background-color: #EEE;
 }
 
-nav{
+nav {
     background-color: cadetblue;
 }
 
-.nav a{
+.nav a {
     color: orange;
 }
 
-.nav label{
+.nav label {
     font-weight: bolder;
     font-family: sans-serif;
 }
 
-.nav{
+.nav {
     border-top: 1px black solid;
 }
 
-.tab-content{
+.tab-content {
     margin: 20px;
 }
 
-.panel-heading{
+.panel-heading {
     width: 100%;
 }
 
-.product{
+.product {
     text-align: center;
     background-color: white;
     padding: 5px;
     margin: 5px;
 }
 
-.btn-primary{
+.btn-primary {
     float: right;
 }
