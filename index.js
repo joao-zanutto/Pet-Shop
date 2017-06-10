@@ -63,7 +63,7 @@ $('document').ready(function () {
 
         // Cria a tabela semana
         let semana = db.createObjectStore("semana", {
-            autoIncrement: true
+            keyPath: "key", autoIncrement: true
         });
         semana.createIndex("weekname", "weekname", {
             unique: true
@@ -74,7 +74,7 @@ $('document').ready(function () {
         let slot = db.createObjectStore("slot", {
             autoIncrement: true
         });
-        // slot = {service, client, animal}
+        // slot = {service, client, animal, day, time}
     };
 
     // Mensagem de sucesso, retorna o banco para o objeto db
@@ -112,7 +112,5 @@ $('document').ready(function () {
                 alert("Senha errada");
             }
         };
-
-
     });
 });

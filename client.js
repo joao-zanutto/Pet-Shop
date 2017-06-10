@@ -7,6 +7,9 @@
 // Tive problemas com a atualização das tabelas da homepage pois não está sendo possível chamar
 //  a função que faz o refresh das tabelas assim que o documento é carregado
 
+// Para trabalhar com datas no indexedDB é necessário usar outro framework, por isso as datas foram removidas
+//  e no lugar estão sendo usados nomes dados pelo usuário
+
 $("document").ready(function () {
     var request = window.indexedDB.open("DBSystem2");
     var db;
@@ -225,12 +228,88 @@ $("document").ready(function () {
                 for (y = 0; y < 5; y++) {
                     // Slot vazio
                     if (event.target.result.calendar[y][i] === 0) {
-                        $("#line" + i).append("<td class='col'><input type='radio' name='date' value='" + y + "'> Horario Vago</input></td>");
+                        $("#line" + i).append("<td class='col'><input class='day' type='radio' name='date' value='" + y + "'> Horario Vago</input></td>");
                     } else { // Slot ocupado
                         $("#line" + i).append("<td class='col'>Ocupado</td>");
                     }
                 }
             }
+            alert(event.target.result.calendar);
         };
+    }
+    
+    // EventHandler que requisita o cadastro de um serviço no calendário
+    $("#agendamento").click(event => {
+        let day = $(".day:checked").val();
+        let animal = $("#animalSelector").find(":selected").text();
+        let service = $("#serviceSelector").find(":selected").text();
+        
+        if(service === ""){
+           alert("Selecione um service para agendar");
+        } else if(animal === ""){
+            alert("Um animal deve ser selecionado");
+        } else if(day === undefined){
+            alert("Selecione uma data");
+        } else {
+            day = setDay(day);
+            let time = $(".day:checked").parent().parent().attr("id").split('line').pop();
+            time = setTime(time);
+            
+            let slot = {service: service, client: user, animal: animal, day: day, time: time};
+            var request = db.transaction("slot", "readwrite").objectStore("slot").add(slot).onsuccess = event =>{
+                alert("Serviço cadastrado com sucesso");
+                updateSemana($("#weekSelector").find(":selected").text(), $(".day:checked").val(), $(".day:checked").parent().parent().attr("id").split('line').pop());
+            };
+        }
+    });
+    
+    function updateSemana(week, day, time){
+        var request = db.transaction("semana").objectStore("semana").index("weekname").get(week);
+        request.onsuccess = event =>{
+            let semana = event.target.result;
+            semana.calendar[day][time] = 1;
+            request = db.transaction("semana", "readwrite").objectStore("semana").put(semana);
+        };
+    }
+    
+    function setDay(day){
+        if(day === "0"){
+            day= "Segunda";
+        } else if(day === "1"){
+            day= "Terça";
+        } else if(day === "2"){
+            day= "Quarta";
+        } else if(day === "3"){
+            day= "Quinta";
+        } else if(day === "4"){
+            day= "Sexta";
+        }
+        day+= "-feira";
+        
+        return day;
+    }
+    
+    function setTime(time){
+        if(time === "0"){
+            return "10:00";
+        } else if(time === "1"){
+            return "10:30";
+        } else if(time === "2"){
+            return "11:00";
+        } else if(time === "3"){
+            return "11:30";
+        } else if(time === "4"){
+            return "12:00";
+        } else if(time === "5"){
+            return "12:30";
+        } else if(time === "6"){
+            return "13:00";
+        } else if(time === "7"){
+            return "13:30";
+        } else if(time === "8"){
+            return "14:00";
+        } else if(time === "9"){
+            return "14:30";
+        }
     }
 });
