@@ -72,7 +72,7 @@ $('document').ready(function () {
 
         // Cria a tabela slot
         let slot = db.createObjectStore("slot", {
-            autoIncrement: true
+            keyPath: "key", autoIncrement: true
         });
         // slot = {service, client, animal, day, time}
     };

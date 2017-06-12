@@ -2,9 +2,8 @@
     Nome: João Pedro Berno Zanutto
     nºUSP: 8956672
 
-    OBS: O uso dos buttons sem o <a> estava acarretando em reloads na página a cada click no botão,
-    que foi concertado usando o <a> com href="#", por isso no primeiro click de qualquer botão está retornando ao
-    "homepage"
+    OBS: O uso de <divs> com classes de botões do bootstrap foi uma solução para o problema de a página ter que ser atualizada
+    sempre que um botão fosse clicado
 
     OBS2: A descrição do serviço foi retirada do sistema pois nunca seria descrita para o cliente na implementação atual
 
@@ -266,6 +265,7 @@
                 <div id="week" style="display: inline-block; margin-top: 10px;">
                     <label>Escolha a semana:</label>
                     <select class="form-control" style="display: inline-block" id="weekList">
+                        <option>Selecione uma opção</option>
                     </select>
                 </div>
                 <div id="createweek" style="display: inline-block">
@@ -283,89 +283,40 @@
                         <th>Quinta-Feira</th>
                         <th>Sexta-Feira</th>
                     </thead>
-                    <tbody>
-                        <tr>
+                    <tbody id="calendarTable">
+                        <tr id="line0" value='0'>
                             <td>10:00</td>
-                            <td>Livre</td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
                         </tr>
-                        <tr>
+                        <tr id="line1" value='1'>
                             <td>10:30</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Livre</td>
                         </tr>
-                        <tr>
+                        <tr id="line2" value='2'>
                             <td>11:00</td>
-                            <td>Livre</td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
                         </tr>
-                        <tr>
+                        <tr id="line3" value='3'>
                             <td>11:30</td>
-                            <td>Livre</td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
                         </tr>
-                        <tr>
+                        <tr id="line4" value='4'>
                             <td>12:00</td>
-                            <td>Livre</td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
                         </tr>
-                        <tr>
+                        <tr id="line5" value='5'>
                             <td>12:30</td>
-                            <td>Livre</td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
                         </tr>
-                        <tr>
+                        <tr id="line6" value='6'>
                             <td>13:00</td>
-                            <td>Livre</td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
                         </tr>
-                        <tr>
+                        <tr id="line7" value='7'>
                             <td>13:30</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Livre</td>
                         </tr>
-                        <tr>
+                        <tr id="line8" value='8'>
                             <td>14:00</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Livre</td>
                         </tr>
-                        <tr>
+                        <tr id="line9" value='9'>
                             <td>14:30</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Livre</td>
-                            <td>Ocupado<button type="button" class="btn btn-danger glyphicon glyphicon-remove remove-calendar"></button></td>
-                            <td>Livre</td>
                         </tr>
                     </tbody>
                 </table>
+                <div class="btn btn-danger" id="deleteAgendamento">Cancelar agendamento</div>
             </div>
 
             <!-- DASHBOARD -->

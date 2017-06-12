@@ -8,23 +8,21 @@ Arquivos:
 	-main.css	  Estilização da página index.html
 	-logo.png	  O logo da "Pet Shop do Fuguinha"
 	-pata.png	  Imagem de uma pata para estilização do index
+	-index.js	  Arquivo javascript com a estrutura do banco de dados e que redireciona para qualquer uma das páginas
 
 	Página de Administrador:
 	-admin.html	  Página contendo o painel do administrador
 	-adminstyle.css	  Estilização da página admin.html
+	-admin.js	  Arquivo javascipt com todas as funções completas fazendo as funções requisitadas
 
 	Página do Cliente:
 	-client.html	  Página do cliente com suas interações
 	-clientstyle.css  Estilização da página client.html
-	-racaox.jpg	  Imagens para a loja da petshop
+	-client.js	  Arquivo javascipt com todas as funções completas fazendo as funções requisitadas
 
 
-Observações:
-
-	-Não foram adicionadas informações tais como cliente com horario reservado,
-	animal e etc aos calendários de serviços pois tomaria muito tempo e depois
-	teria de ser apagado
-
-	-Na aba "Dashboard" do painel do administrador será adicionado um gráfico
-	interativo, que não foi ainda pela má aparencia que causaria um gráfico
-	em jpg para demonstração de como seria o funcional
+Observação:
+	
+	O trabalho foi feito estruturado e dependente de que o usuário abra a página index logo de inicio,
+	para evitar perda de dados e bugs. Na primeira utilização deve ser feito o login como admin e senha admin
+	e a partir do painel do administrador o usuário pederá criar um cliente e demais operações.

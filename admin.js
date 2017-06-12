@@ -335,13 +335,13 @@ $("document").ready(function () {
 
     // Função que faz o refresh da lista de semanas
     function refreshWeeks() {
-        $("#weekList option").remove();
+        $("#weekList .options").remove();
 
         var stock = db.transaction("semana").objectStore("semana");
         stock.openCursor().onsuccess = event => {
             let cursor = event.target.result;
             if (cursor) {
-                $("#weekList").append("<option value='" + cursor.key + "'>" + cursor.value.weekname + "</option>");
+                $("#weekList").append("<option class='options' value='" + cursor.key + "'>" + cursor.value.weekname + "</option>");
                 cursor.continue();
             }
         };
@@ -351,4 +351,57 @@ $("document").ready(function () {
     $("#calendarButton").click(event => {
         refreshWeeks();
     });
+    
+    // Deleta um agendamento, requer: remoçado do slot, log e entrada no calendário
+    $("#deleteAgendamento").click(event =>{
+        if(confirm("Tem certeza que deseja deletar o agendamento\nO dashboard não aparagará as informações sobre o serviço.")){
+            removeSlot($("#weekList").find(":selected").text());
+            refreshCalendar();
+        }
+    });
+    
+    // Função que faz remoção de um slot e atualiza o calendário
+    function removeSlot(week){
+        let day = $(".day:checked").val();
+        let time = $(".day:checked").parent().parent().attr("id").split('line').pop();
+                
+        var request = db.transaction("semana").objectStore("semana").index("weekname").get(week);
+        request.onsuccess = event =>{
+            let semana = event.target.result;
+            let slot = semana.calendar[day][time];
+            semana.calendar[day][time] = 0;
+            // FALTA REMOVER DA OBJECTSTORE SLOT
+            request = db.transaction("semana", "readwrite").objectStore("semana").put(semana);
+            refreshCalendar();
+        };        
+    }
+    
+    // EventHandler que atualiza o calendario
+    $("#weekList").change(event =>{
+       refreshCalendar(); 
+    });
+    
+    // Função que faz refresh do calendario
+    function refreshCalendar() {
+        $("#calendarTable .col").remove();
+
+        let week = $("#weekList").find(":selected").text();
+        var request = db.transaction("semana").objectStore("semana").index("weekname");
+        request.get(week).onsuccess = event => {
+            var i, y;
+            // Passa i por todos os trs da tabela
+            for (i = 0; i < 10; i++) {
+                // Passa y por todos os tds da tabela
+                for (y = 0; y < 5; y++) {
+                    // Slot vazio
+                    if (event.target.result.calendar[y][i] !== 0) {
+                        let slot = event.target.result.calendar[y][i];
+                        $("#line" + i).append("<td class='col'><input class='day' type='radio' name='date' value='" + y + "'>"+ slot.service + "<br>" + slot.client + " " + slot.animal +"</input></td>");
+                    } else { // Slot ocupado
+                        $("#line" + i).append("<td class='col'>Horário vago</td>");
+                    }
+                }
+            }
+        };
+    }
 });

@@ -4,12 +4,6 @@
 /*jshint esversion: 6 */
 /*globals $:false */
 
-// Tive problemas com a atualização das tabelas da homepage pois não está sendo possível chamar
-//  a função que faz o refresh das tabelas assim que o documento é carregado
-
-// Para trabalhar com datas no indexedDB é necessário usar outro framework, por isso as datas foram removidas
-//  e no lugar estão sendo usados nomes dados pelo usuário
-
 $("document").ready(function () {
     var request = window.indexedDB.open("DBSystem2");
     var db;
@@ -22,10 +16,27 @@ $("document").ready(function () {
     // Inicializa o banco
     request.onsuccess = function (event) {
         db = request.result;
+        refreshAnimalTable();
+        refreshServiceTable();
     };
 
     // Pega o usuário logado
     var user = window.location.href.split('user=').pop();
+    
+    // Faz refresh da tabela de serviços 
+    function refreshServiceTable(){
+        $("#serviceList .slotData").remove();
+        var request = db.transaction("slot").objectStore("slot");
+        request.openCursor().onsuccess = event =>{
+            let cursor = event.target.result;
+            if(cursor){
+                if(cursor.value.client === user)
+                    $("#serviceList tbody").append("<tr class='slotData'><td>" + cursor.value.service + "</td><td>" + cursor.value.day + "</td><td>" + cursor.value.time + "</td><td>" + cursor.value.animal + "</td></tr>");
+                
+                cursor.continue();
+            }
+        };
+    }
 
     // Faz o refresh da lista de produtos
     function refreshProducts() {
@@ -98,7 +109,7 @@ $("document").ready(function () {
                         quantity: productQuantity,
                         price: (productQuantity * event.target.result.pprice)
                     };
-                    request = db.transaction("log", "readwrite").objectStore("log").add(log);
+                    updateLog(log);
                     alert("Venda de " + productName + " realizada com sucesso!");
                 }
             };
@@ -106,6 +117,10 @@ $("document").ready(function () {
         refreshProducts();
     });
 
+    function updateLog(log){
+        var request = db.transaction("log", "readwrite").objectStore("log").add(log);
+    }
+    
     // Estrutura do Animal
     // petname UNQ
     // petage
@@ -150,7 +165,7 @@ $("document").ready(function () {
         animal.openCursor().onsuccess = event => {
             let cursor = event.target.result;
             if (cursor && cursor.value.petowner == user) {
-                $("#animals tbody").append("<tr><td>" + cursor.value.petname + "</td><td>" + cursor.value.petage + "</td><td>" + cursor.value.pettype + "</td><td>" + cursor.value.petrace + "</td><td>" + cursor.value.petsex + "</td></tr>");
+                $("#animals tbody").append("<tr><td>" + cursor.value.petname + "</td><td>" + cursor.value.petage + "</td><td>" + cursor.value.petrace + "</td><td>" + cursor.value.petsex + "</td></tr>");
                 cursor.continue();
             }
         };
@@ -159,6 +174,7 @@ $("document").ready(function () {
     // EventHandler do botão home
     $("#hButton").click(function () {
         refreshAnimalTable();
+        refreshServiceTable();
     });
 
     // EventHandler do botão de agendar serviços
@@ -208,7 +224,8 @@ $("document").ready(function () {
         animal.openCursor().onsuccess = event => {
             let cursor = event.target.result;
             if (cursor) {
-                $("#animalSelector").append("<option value='" + cursor.key + "'>" + cursor.value.petname + "</option>");
+                if(cursor.value.petowner === user)
+                    $("#animalSelector").append("<option value='" + cursor.key + "'>" + cursor.value.petname + "</option>");
                 cursor.continue();
             }
         };
@@ -234,7 +251,6 @@ $("document").ready(function () {
                     }
                 }
             }
-            alert(event.target.result.calendar);
         };
     }
     
@@ -245,7 +261,7 @@ $("document").ready(function () {
         let service = $("#serviceSelector").find(":selected").text();
         
         if(service === ""){
-           alert("Selecione um service para agendar");
+           alert("Selecione um serviço para agendar");
         } else if(animal === ""){
             alert("Um animal deve ser selecionado");
         } else if(day === undefined){
@@ -255,23 +271,39 @@ $("document").ready(function () {
             let time = $(".day:checked").parent().parent().attr("id").split('line').pop();
             time = setTime(time);
             
+            
             let slot = {service: service, client: user, animal: animal, day: day, time: time};
             var request = db.transaction("slot", "readwrite").objectStore("slot").add(slot).onsuccess = event =>{
                 alert("Serviço cadastrado com sucesso");
-                updateSemana($("#weekSelector").find(":selected").text(), $(".day:checked").val(), $(".day:checked").parent().parent().attr("id").split('line').pop());
+                updateSemana($("#weekSelector").find(":selected").text(), $(".day:checked").val(), $(".day:checked").parent().parent().attr("id").split('line').pop(), slot);
+                
+                // Cadastra no log do admin
+                let price = service.split('(').pop();
+                price = price.slice(0, -1); // Retorna o preço sem o parenteses
+                let log = {
+                        type: "Serviço",
+                        client: user,
+                        name: slot.service,
+                        quantity: "",
+                        price: price
+                };
+                updateLog(log);
             };
         }
     });
     
-    function updateSemana(week, day, time){
+    // Função que faz update no calendario marcando o horario como ocupado
+    function updateSemana(week, day, time, slot){
         var request = db.transaction("semana").objectStore("semana").index("weekname").get(week);
         request.onsuccess = event =>{
             let semana = event.target.result;
-            semana.calendar[day][time] = 1;
+            semana.calendar[day][time] = slot;
             request = db.transaction("semana", "readwrite").objectStore("semana").put(semana);
+            refreshCalendar();
         };
     }
     
+    // Função que muda o valor da variável de acordo com o dia
     function setDay(day){
         if(day === "0"){
             day= "Segunda";
@@ -289,6 +321,7 @@ $("document").ready(function () {
         return day;
     }
     
+    // Função que muda o valor da variável de acordo com o horário
     function setTime(time){
         if(time === "0"){
             return "10:00";
@@ -312,4 +345,6 @@ $("document").ready(function () {
             return "14:30";
         }
     }
+    
+    
 });

@@ -46,7 +46,6 @@
                         <thead>
                             <th>Nome do Animal</th>
                             <th>Idade</th>
-                            <th>Tipo</th>
                             <th>Raça</th>
                             <th>Sexo</th>
                         </thead>
@@ -54,31 +53,14 @@
                         </tbody>
                     </table>
                     <h3>Serviços Agendados</h3>
-                    <table class="table">
+                    <table class="table" id="serviceList">
                         <thead>
                             <th>Nome do Serviço</th>
                             <th>Data</th>
                             <th>Hora</th>
                             <th>Animal</th>
-                            <th>Preço (R$)</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Banho</td>
-                                <td>17/04/2017</td>
-                                <td>13:30</td>
-                                <td>Pedrita</td>
-                                <td>35,00
-                                    <td>
-                            </tr>
-                            <tr>
-                                <td>Higienização com pó</td>
-                                <td>17/04/2017</td>
-                                <td>14:00</td>
-                                <td>Nelson</td>
-                                <td>25,00
-                                    <td>
-                            </tr>
                         </tbody>
                     </table>
             </div>
@@ -97,8 +79,8 @@
                             <input type="number" class="form-control" id="petage">
                         </div>
                         <div class="form-group">
-                            <label for="petrace">Tipo:</label>
-                            <select class="form-control" id="petrace">
+                            <label for="pettype">Tipo:</label>
+                            <select class="form-control" id="pettype">
                                 <option value="Cachorro">Cães</option>
                                 <option value="Gato">Gatos</option>
                                 <option value="Roedor">Roedores</option>
@@ -228,7 +210,6 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
