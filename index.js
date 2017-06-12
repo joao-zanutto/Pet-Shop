@@ -69,12 +69,6 @@ $('document').ready(function () {
             unique: true
         });
         // semana = {key, weekname, calendar}
-
-        // Cria a tabela slot
-        let slot = db.createObjectStore("slot", {
-            keyPath: "key", autoIncrement: true
-        });
-        // slot = {service, client, animal, day, time}
     };
 
     // Mensagem de sucesso, retorna o banco para o objeto db

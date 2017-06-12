@@ -356,7 +356,6 @@ $("document").ready(function () {
     $("#deleteAgendamento").click(event =>{
         if(confirm("Tem certeza que deseja deletar o agendamento\nO dashboard não aparagará as informações sobre o serviço.")){
             removeSlot($("#weekList").find(":selected").text());
-            refreshCalendar();
         }
     });
     
@@ -370,7 +369,6 @@ $("document").ready(function () {
             let semana = event.target.result;
             let slot = semana.calendar[day][time];
             semana.calendar[day][time] = 0;
-            // FALTA REMOVER DA OBJECTSTORE SLOT
             request = db.transaction("semana", "readwrite").objectStore("semana").put(semana);
             refreshCalendar();
         };        
@@ -393,11 +391,11 @@ $("document").ready(function () {
             for (i = 0; i < 10; i++) {
                 // Passa y por todos os tds da tabela
                 for (y = 0; y < 5; y++) {
-                    // Slot vazio
+                    // Slot ocupado
                     if (event.target.result.calendar[y][i] !== 0) {
                         let slot = event.target.result.calendar[y][i];
                         $("#line" + i).append("<td class='col'><input class='day' type='radio' name='date' value='" + y + "'>"+ slot.service + "<br>" + slot.client + " " + slot.animal +"</input></td>");
-                    } else { // Slot ocupado
+                    } else { // Slot vazio
                         $("#line" + i).append("<td class='col'>Horário vago</td>");
                     }
                 }

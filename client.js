@@ -26,13 +26,19 @@ $("document").ready(function () {
     // Faz refresh da tabela de serviços 
     function refreshServiceTable(){
         $("#serviceList .slotData").remove();
-        var request = db.transaction("slot").objectStore("slot");
+        var request = db.transaction("semana").objectStore("semana");
         request.openCursor().onsuccess = event =>{
             let cursor = event.target.result;
             if(cursor){
-                if(cursor.value.client === user)
-                    $("#serviceList tbody").append("<tr class='slotData'><td>" + cursor.value.service + "</td><td>" + cursor.value.day + "</td><td>" + cursor.value.time + "</td><td>" + cursor.value.animal + "</td></tr>");
-                
+                let x, y;
+                for(x = 0; x < 5; x++){
+                    for(y = 0; y < 10; y++){
+                        if(cursor.value.calendar[x][y].client === user){
+                            let slot = cursor.value.calendar[x][y];
+                            $("#serviceList tbody").append("<tr class='slotData'><td>" + slot.service + "</td><td>" + slot.day + "</td><td>" + slot.time + "</td><td>" + slot.animal + "</td></tr>");
+                        }
+                    }
+                }
                 cursor.continue();
             }
         };
@@ -273,22 +279,20 @@ $("document").ready(function () {
             
             
             let slot = {service: service, client: user, animal: animal, day: day, time: time};
-            var request = db.transaction("slot", "readwrite").objectStore("slot").add(slot).onsuccess = event =>{
-                alert("Serviço cadastrado com sucesso");
-                updateSemana($("#weekSelector").find(":selected").text(), $(".day:checked").val(), $(".day:checked").parent().parent().attr("id").split('line').pop(), slot);
+            alert("Serviço cadastrado com sucesso");
+            updateSemana($("#weekSelector").find(":selected").text(), $(".day:checked").val(), $(".day:checked").parent().parent().attr("id").split('line').pop(), slot);
                 
-                // Cadastra no log do admin
-                let price = service.split('(').pop();
-                price = price.slice(0, -1); // Retorna o preço sem o parenteses
-                let log = {
-                        type: "Serviço",
-                        client: user,
-                        name: slot.service,
-                        quantity: "",
-                        price: price
-                };
-                updateLog(log);
+             // Cadastra no log do admin
+            let price = service.split('(').pop();
+            price = price.slice(0, -1); // Retorna o preço sem o parenteses
+            let log = {
+                type: "Serviço",
+                client: user,
+                name: slot.service,
+                quantity: "",
+                price: price
             };
+            updateLog(log);
         }
     });
     
